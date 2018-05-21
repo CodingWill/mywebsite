@@ -53,7 +53,7 @@ public class UserController {
     public ServerResponse<String> logout(HttpSession session){
         // delete from session
         session.removeAttribute(Const.CURRENT_USER);
-        return ServerResponse.createBySuccess();
+        return ServerResponse.createBySuccessMessage("Already logout");
     }
 
     // 3. register
@@ -154,20 +154,5 @@ public class UserController {
         }
         return iUserService.getInformation(currentUser.getId());
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }

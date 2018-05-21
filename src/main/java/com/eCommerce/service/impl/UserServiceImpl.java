@@ -60,6 +60,7 @@ public class UserServiceImpl implements IUserService {
         // set role(limits of authority), user/administer
         user.setRole(Const.Role.ROLE_CUSTOMER);
         // encrypt using MD5
+        user.setPassword(MD5Util.MD5EncodeUtf8(user.getPassword()));
         int userCount = userMapper.insert(user);
         if (userCount == 0) {
             // insert failed
@@ -111,7 +112,7 @@ public class UserServiceImpl implements IUserService {
         int count = userMapper.verifyAnswer(username,question,answer);
         if(count>0){
             String forgetToken = UUID.randomUUID().toString();
-            TokenCache.setKey("token_" + username,forgetToken);
+            TokenCache.setKey(TokenCache.TOKEN_PREFIX + username, forgetToken);
             return ServerResponse.createBySuccess(forgetToken);
         }
         return ServerResponse.createByErrorMessage("Wrong answer");
@@ -129,7 +130,7 @@ public class UserServiceImpl implements IUserService {
             // user doesn't exist
             return ServerResponse.createByErrorMessage("User doesn't exist");
         }
-        String token = TokenCache.getKey("token_" + username);
+        String token = TokenCache.getKey(TokenCache.TOKEN_PREFIX + username);
         if(org.apache.commons.lang3.StringUtils.isBlank(token)) {
             return ServerResponse.createByErrorMessage("Invalid token");
         }
