@@ -199,6 +199,15 @@ public class UserServiceImpl implements IUserService {
     }
 
 
+    // backend part
+    // check if current user is admin
+    public ServerResponse checkAdminRole(User user) {
+        if (user != null && user.getRole().intValue() == Const.Role.ROLE_ADMIN) {
+            return ServerResponse.createBySuccess();
+        }
+        return ServerResponse.createByErrorMessage("NOT an administer");
+    }
+
 
 
 
