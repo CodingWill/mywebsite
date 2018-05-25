@@ -12,6 +12,7 @@ import com.eCommerce.util.BigDecimalUtil;
 import com.eCommerce.util.PropertiesUtil;
 import com.eCommerce.vo.CartProductVo;
 import com.eCommerce.vo.CartVo;
+import com.google.common.base.Splitter;
 import com.google.common.collect.Lists;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,10 +53,58 @@ public class CartServiceImpl implements ICartService{
             cart.setQuantity(count);
             cartMapper.updateByPrimaryKeySelective(cart);
         }
+        return this.list(userId);
+    }
 
+    public ServerResponse<CartVo> update(Integer userId, Integer productId, Integer count) {
+        if(productId == null || count == null){
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.ILLEGAL_ARGUMENT.getCode(),ResponseCode.ILLEGAL_ARGUMENT.getDescription());
+        }
+
+        Cart cart = cartMapper.selectCartByUserIdProductId(userId, productId);
+        if (cart != null) {
+            cart.setQuantity(count);
+        }
+        cartMapper.updateByPrimaryKeySelective(cart);
+        return this.list(userId);    }
+
+    public ServerResponse<CartVo> deleteProduct(Integer userId, String productIds) {
+        List<String> productList = Splitter.on(",").splitToList(productIds);
+        if (CollectionUtils.isEmpty(productList)) {
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.ILLEGAL_ARGUMENT.getCode(),ResponseCode.ILLEGAL_ARGUMENT.getDescription());
+        }
+        cartMapper.deleteByUserIdProductIds(userId, productList);
+        return this.list(userId);
+    }
+
+
+    public ServerResponse<CartVo> list (Integer userId) {
         CartVo cartVo = this.getCartVoLimit(userId);
         return ServerResponse.createBySuccess(cartVo);
     }
+
+    public ServerResponse<CartVo> selectOrUnselect(Integer userId, Integer productId, Integer checked) {
+        cartMapper.checkedOrUncheckedProduct(userId, productId, checked);
+        return this.list(userId);
+    }
+
+    public ServerResponse<Integer> getCount(Integer userId) {
+        if (userId == null) {
+            return ServerResponse.createBySuccess(0);
+        }
+        return ServerResponse.createBySuccess(cartMapper.selectCartProductCount(userId));
+    }
+
+
+
+
+
+
+
+
+
+
+
 
 
     private CartVo getCartVoLimit(Integer userId) {
