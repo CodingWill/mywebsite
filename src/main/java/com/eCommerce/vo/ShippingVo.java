@@ -1,8 +1,6 @@
 package com.eCommerce.vo;
 
-/**
- * Created by chao on 5/27/18.
- */
+
 public class ShippingVo {
 
     private String receiverName;

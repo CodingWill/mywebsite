@@ -2,9 +2,7 @@ package com.eCommerce.vo;
 
 import java.math.BigDecimal;
 
-/**
- * Created by chao on 5/24/18.
- */
+
 public class CartProductVo {
 
     private Integer id;

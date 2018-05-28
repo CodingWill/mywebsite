@@ -14,9 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 
-/**
- * Created by chao on 5/19/18.
- */
+
 @Controller
 @RequestMapping("/user/")
 public class UserController {
@@ -24,13 +22,6 @@ public class UserController {
     @Autowired
     private IUserService iUserService;
 
-    /**
-     * user login
-     * @param username
-     * @param password
-     * @param session
-     * @return
-     */
 
     // 1. login
     @RequestMapping(value = "login.do", method = RequestMethod.POST)

@@ -5,9 +5,7 @@ import com.eCommerce.pojo.User;
 
 import javax.servlet.http.HttpSession;
 
-/**
- * Created by chao on 5/19/18.
- */
+
 public interface IUserService {
 
     ServerResponse<User> login(String username, String password);

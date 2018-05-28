@@ -2,9 +2,7 @@ package com.eCommerce.vo;
 
 import java.math.BigDecimal;
 
-/**
- * Created by chao on 5/27/18.
- */
+
 public class OrderItemVo {
 
     private Long orderNo;

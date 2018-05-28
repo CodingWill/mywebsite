@@ -2,9 +2,7 @@ package com.eCommerce.vo;
 
 import java.math.BigDecimal;
 
-/**
- * Created by chao on 5/24/18.
- */
+
 public class ProductListVo {
     /*
      *when we get product list, we don't need every detail of the product

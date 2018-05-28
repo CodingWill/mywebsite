@@ -21,9 +21,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.util.List;
 
-/**
- * Created by chao on 5/24/18.
- */
+
 @Service("iCartService")
 public class CartServiceImpl implements ICartService{
 

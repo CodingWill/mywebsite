@@ -4,9 +4,7 @@ import com.google.common.collect.Sets;
 
 import java.util.Set;
 
-/**
- * Created by chao on 5/19/18.
- */
+
 public class Const {
     public static final String CURRENT_USER = "currentUser";
     public static final String EMAIL = "email";

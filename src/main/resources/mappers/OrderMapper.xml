@@ -215,6 +215,24 @@
   </select>
 
 
+  <select id="selectByUserId" resultMap="BaseResultMap" parameterType="int">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM order_
+    WHERE user_id = #{userId}
+    ORDER BY create_time DESC
+  </select>
+
+
+
+  <select id="selectAllOrder" resultMap="BaseResultMap">
+    SELECT
+    <include refid="Base_Column_List"/>
+    FROM order_
+    ORDER BY  create_time DESC
+  </select>
+
+
 
 
 

@@ -4,9 +4,7 @@ import com.eCommerce.common.ServerResponse;
 import com.eCommerce.pojo.ShippingAddress;
 import com.github.pagehelper.PageInfo;
 
-/**
- * Created by chao on 5/25/18.
- */
+
 public interface IShippingService {
 
     ServerResponse add(Integer userId, ShippingAddress shippingAddress);

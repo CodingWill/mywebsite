@@ -23,9 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.Map;
 
-/**
- * Created by chao on 5/22/18.
- */
+
 @Controller
 @RequestMapping("/manage/product")
 public class ProductManageController {

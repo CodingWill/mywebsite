@@ -12,9 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpSession;
 
-/**
- * Created by chao on 5/20/18.
- */
+
 @Controller
 @RequestMapping("/manage/user")
 public class UserManageController {

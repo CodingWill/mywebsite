@@ -3,9 +3,7 @@ package com.eCommerce.vo;
 import java.math.BigDecimal;
 import java.util.Iterator;
 
-/**
- * Created by chao on 5/22/18.
- */
+
 public class ProductDetailVo {
 
     private Integer id;

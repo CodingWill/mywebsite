@@ -3,9 +3,7 @@ package com.eCommerce.vo;
 import java.math.BigDecimal;
 import java.util.List;
 
-/**
- * Created by chao on 5/24/18.
- */
+
 public class CartVo {
     private List<CartProductVo> cartProductVoList;
     private BigDecimal cartTotalPrice;

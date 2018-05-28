@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-/**
- * Created by chao on 5/24/18.
- */
+
 @Controller
 @RequestMapping("/product/")
 public class ProductController {

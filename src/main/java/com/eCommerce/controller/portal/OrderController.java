@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
@@ -21,9 +22,7 @@ import javax.servlet.http.HttpSession;
 import java.util.Iterator;
 import java.util.Map;
 
-/**
- * Created by chao on 5/25/18.
- */
+
 @Controller
 @RequestMapping("/order/")
 public class OrderController {
@@ -34,56 +33,67 @@ public class OrderController {
     @Autowired
     private IOrderService iOrderService;
 
+    // 1. create an order
     @RequestMapping("create.do")
     @ResponseBody
-    public ServerResponse create(HttpSession session, Long orderNo, Integer shippingId){
+    public ServerResponse create(HttpSession session, Integer shippingId) {
         // check login status
         User user = (User)session.getAttribute(Const.CURRENT_USER);
         if(user == null) {
             return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(),ResponseCode.NEED_LOGIN.getDescription());
         }
-        // get path
         return iOrderService.createOrder(user.getId(), shippingId);
     }
 
+    // 2. cancel an order
+    @RequestMapping("cancel.do")
+    @ResponseBody
+    public ServerResponse cancel(HttpSession session, Long orderNo){
+        // check login status
+        User user = (User)session.getAttribute(Const.CURRENT_USER);
+        if(user == null) {
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(),ResponseCode.NEED_LOGIN.getDescription());
+        }
+        return iOrderService.cancel(user.getId(), orderNo);
+    }
 
+    // 3. view cart
+    @RequestMapping("get_order_cart_product.do")
+    @ResponseBody
+    public ServerResponse getOrderCartProduct(HttpSession session){
+        // check login status
+        User user = (User)session.getAttribute(Const.CURRENT_USER);
+        if(user == null) {
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(),ResponseCode.NEED_LOGIN.getDescription());
+        }
+        return iOrderService.getOrderCartProduct(user.getId());
+    }
 
+    // 4. view order detail
+    @RequestMapping("detail.do")
+    @ResponseBody
+    public ServerResponse detail(HttpSession session, Long orderNo){
+        // check login status
+        User user = (User)session.getAttribute(Const.CURRENT_USER);
+        if(user == null) {
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(),ResponseCode.NEED_LOGIN.getDescription());
+        }
+        return iOrderService.getOrderDetail(user.getId(), orderNo);
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    // 4. view order list
+    @RequestMapping("list.do")
+    @ResponseBody
+    public ServerResponse list(HttpSession session,
+                               @RequestParam(value = "pageNumber",defaultValue = "1") int pageNumber,
+                               @RequestParam(value = "pageSize",defaultValue = "10") int pageSize){
+        // check login status
+        User user = (User)session.getAttribute(Const.CURRENT_USER);
+        if(user == null) {
+            return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(),ResponseCode.NEED_LOGIN.getDescription());
+        }
+        return iOrderService.getOrderList(user.getId(), pageNumber, pageSize);
+    }
 
 
 

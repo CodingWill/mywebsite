@@ -3,9 +3,7 @@ package com.eCommerce.vo;
 import java.math.BigDecimal;
 import java.util.List;
 
-/**
- * Created by chao on 5/27/18.
- */
+
 public class OrderVo {
 
     private Long orderNo;

@@ -14,9 +14,7 @@ import org.springframework.util.StringUtils;
 
 import java.util.UUID;
 
-/**
- * Created by chao on 5/19/18.
- */
+
 // inject to controller, interface
 @Service("iUserService")
 public class UserServiceImpl implements IUserService {
