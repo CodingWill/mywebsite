@@ -190,7 +190,7 @@ public class ProductManageController {
 
             if (!iUserService.checkAdminRole(user).isSuccess()) {
                 resultMap.put("success", false);
-                resultMap.put("msg", "admin authority is needed");
+                resultMap.put("msg", "administrator authority is needed");
                 return resultMap;
             }
             else {

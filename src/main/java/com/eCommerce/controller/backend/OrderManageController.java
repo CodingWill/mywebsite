@@ -59,7 +59,7 @@ public class OrderManageController {
         if (user == null) {
             return ServerResponse.createByErrorCodeMessage(ResponseCode.NEED_LOGIN.getCode(), "Please login and try again");
         }
-        // verify if current user is admin
+        // verify if current user is administrator
         if (iUserService.checkAdminRole(user).isSuccess()) {
             // if true, admin
             return iOrderService.manageDetail(orderNo);

@@ -34,7 +34,7 @@ public class UserManageController {
                 return reponse;
             }
             else {
-                return ServerResponse.createByErrorMessage("NOT administer, NO authority");
+                return ServerResponse.createByErrorMessage("NOT administrator, NO authority");
             }
         }
         return reponse;
